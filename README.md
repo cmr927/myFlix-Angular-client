@@ -1,6 +1,41 @@
 # MyFlixAngularClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.4.
+## Description
+
+MyFlix is a single-page, responsive movie app built with [Angular](https://github.com/angular), with routing and several
+interface views. This client-side supports [myFlix API](https://github.com/cmr927/myFlix), the existing server-side code (REST API and database) by facilitating user requests and rendering the response from the server-side via a number of different interface views. 
+
+MyFlix provides users with access to information about different movies, directors, and genres. Users are able to sign up, update their personal information, and create a list of their favorite movies.
+
+## Features
+
+- Displays a welcome view where users will be able to either log in or register an
+account.
+- Once authenticated, the user should now view all movies.
+- Upon clicking on a particular movie, users will be taken to a single movie view, where
+additional movie details will be displayed. The single movie view will contain the following
+additional features:
+    - A button that when clicked takes a user to the director view, where details about the
+director of that particular movie will be displayed.
+    - A button that when clicked takes a user to the genre view, where details about that
+particular genre of the movie will be displayed.
+
+## Dependencies
+- angular
+- rxjs
+- tslib
+- zone.js
+- types
+- codelyzer
+- jasmine
+- karma
+- protractor
+- ts-node
+- tslint
+- typescript
+
+## Prerequisites
+- Node.js
 
 ## Development server
 
