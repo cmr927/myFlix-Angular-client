@@ -9,8 +9,6 @@ import { MovieAPIService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { MatCard } from '@angular/material/card';
-
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
@@ -34,12 +32,12 @@ registerUser(): void {
   // Logic for a successful user registration goes here! (To be implemented)
      this.dialogRef.close(); // This will close the modal on success!
      console.log(result);
-     this.snackBar.open(result, 'OK', {
+     this.snackBar.open(JSON.stringify(result), 'OK', {
         duration: 2000
      });
     }, (result) => {
       console.log(result);
-      this.snackBar.open(result, 'OK', {
+      this.snackBar.open(JSON.stringify(result), 'OK', {
         duration: 2000
       });
     });

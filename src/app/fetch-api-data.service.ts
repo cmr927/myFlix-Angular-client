@@ -27,7 +27,8 @@ export class MovieAPIService {
     console.log(loginDetails);
     return this.http.post(apiUrl + 'login/', loginDetails).pipe(
     catchError(this.handleError)
-    );
+    )
+
   };
 
   // Making the api call for the get all movies endpoint

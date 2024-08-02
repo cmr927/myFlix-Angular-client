@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  @Input() userData = { Username: '', Password: ''};
+  @Input() userData = { username: '', password: ''};
 
 constructor(
     public movieApiData: MovieAPIService,
@@ -32,12 +32,18 @@ loginUser(): void {
   // Logic for a successful user login goes here! (To be implemented)
      this.dialogRef.close(); // This will close the modal on success!
      console.log(result);
-     this.snackBar.open(result, 'OK', {
+     this.snackBar.open(JSON.stringify(result), 'OK', {
         duration: 2000
      });
+    
+      if (result) {
+        localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("token", result.token);
+      }
+    
     }, (result) => {
       console.log(result);
-      this.snackBar.open(result, 'OK', {
+      this.snackBar.open(JSON.stringify(result), 'OK', {
         duration: 2000
       });
     });
