@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+
 // You'll use this import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -8,6 +9,10 @@ import { MovieAPIService } from '../fetch-api-data.service';
 
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+// This import is used to route
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-login-form',
@@ -46,7 +51,9 @@ loginUser(): void {
       this.snackBar.open(JSON.stringify(result), 'OK', {
         duration: 2000
       });
+      this.router.navigate(['movies']);
     });
+   
   }
 
   }
