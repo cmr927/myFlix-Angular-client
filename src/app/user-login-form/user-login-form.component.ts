@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-
 // You'll use this import to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -26,7 +25,9 @@ export class UserLoginFormComponent implements OnInit {
 constructor(
     public movieApiData: MovieAPIService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    public router: Router
+) { }
 
 ngOnInit(): void {
 }
@@ -44,14 +45,17 @@ loginUser(): void {
       if (result) {
         localStorage.setItem("user", JSON.stringify(result.user));
         localStorage.setItem("token", result.token);
-      }
-    
-    }, (result) => {
+        this.router.navigate(['/movies']);
+      };
+  
+    }, 
+    // If login fails 
+    (result) => {
       console.log(result);
-      this.snackBar.open(JSON.stringify(result), 'OK', {
+      this.snackBar.open('Login failed', 'OK', {
         duration: 2000
       });
-      this.router.navigate(['movies']);
+      
     });
    
   }
