@@ -16,7 +16,7 @@
                 color="primary">
                 Director
             </button>
-            <button mat-button color="primary">
+            <button mat-button (click)="openSynopsisDialog(movie.Description)" color="primary">
                 Synopsis
             </button>
             <mat-icon>favorite_border</mat-icon>

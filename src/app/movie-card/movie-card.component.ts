@@ -3,6 +3,7 @@ import { MovieAPIService } from '../fetch-api-data.service'
 import { Router } from '@angular/router';
 import { DirectorComponent } from '../director/director.component';
 import { GenreComponent } from '../genre/genre.component';
+import { SynopsisComponent } from '../synopsis/synopsis.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -42,6 +43,14 @@ openDirectorDialog(directorName, directorBio, directorBirth, directorDeath): voi
 openGenreDialog(genreName, genreDescription): void {
   this.dialog.open(GenreComponent, {
     data: {genreName: genreName, genreDescription: genreDescription},
+    width: '280px'
+  });
+};
+
+// This is the function that will open the dialog when the synopsis button is clicked  
+openSynopsisDialog(synopsis): void {
+  this.dialog.open(SynopsisComponent, {
+    data: {synopsis: synopsis},
     width: '280px'
   });
 };
