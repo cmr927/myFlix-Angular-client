@@ -6,9 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 // Component Imports
-// import { DirectorInfoComponent } from '../director-info/director-info.component';
-// import { GenreInfoComponent } from '../genre-info/genre-info.component';
-// import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
+import { DirectorComponent } from '../director/director.component';
+import { GenreComponent } from '../genre/genre.component';
+import { SynopsisComponent } from '../synopsis/synopsis.component';
 
 /**
  * Component for user profile management.
@@ -128,29 +128,13 @@ export class UserProfileComponent implements OnInit {
      * Toggles a movie in the user's favorite movies list.
      * @param movie - The movie to toggle.
      */
-  // toggleFav(movie: any): void {
-  //   const isFavorite = this.isFav(movie);
-  //   isFavorite
-  //     ? this.deleteFavMovies(movie)
-  //     : this.addFavMovies(movie);
-  // }
+  
 
   /**
      * Adds a movie to the user's favorite movies list.
      * @param movie - The movie to add.
      */
-  addFavMovies(movie: any): void {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    if (user) {
-      this.movieAPIData.addFavoriteMovies(user.Username, movie._id).subscribe((result) => {
-        localStorage.setItem('user', JSON.stringify(result));
-        this.getFavMovies(); // Refresh favorite movies after adding a new one
-        this.snackBar.open(`${movie.movieName} has been added to your favorites`, 'OK', {
-          duration: 1000,
-        });
-      });
-    }
-  }
+
 
   /**
      * Deletes a movie from the user's favorite movies list.
