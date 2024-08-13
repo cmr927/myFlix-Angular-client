@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DirectorComponent } from '../director/director.component';
 import { GenreComponent } from '../genre/genre.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
+import { MovieCardComponent } from '../movie-card/movie-card.component';
 
 /**
  * Component for user profile management.
@@ -54,6 +55,7 @@ export class UserProfileComponent implements OnInit {
     public movieAPIData: MovieAPIService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
+    public movieCardComponent: MovieCardComponent,
     public router: Router
   ) { }
 /** Lifecycle hook called after component initialization. */  ngOnInit(): void {

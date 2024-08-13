@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, Input } from '@angular/core';
 import { MovieAPIService } from '../fetch-api-data.service'
 import { Router } from '@angular/router';
 import { DirectorComponent } from '../director/director.component';
 import { GenreComponent } from '../genre/genre.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie-card',
@@ -12,17 +13,23 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent {
+  @Injectable({providedIn: 'root'})
   movies: any[] = [];
+  favoriteMovies: any[] = [];
+  @Input() isProfile = false
   constructor(
     public movieApiData: MovieAPIService,
     public dialog: MatDialog,
-    public router: Router
+    public router: Router,
+    public snackBar: MatSnackBar
   ) { }
 
 ngOnInit(): void {
   this.getMovies();
+  this.getFavoriteMovies();
 }
 
+// This is the function that will get all movies when the /movies page loads
 getMovies(): void {
   this.movieApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -30,11 +37,15 @@ getMovies(): void {
       return this.movies;
     });
   };
-
-  isFav(movie: any): boolean {
-
-    return this.favoriteMoviesIDs.includes(movie._id);
-  }
+// This is the function that will get all favotie movies when the /movies page loads
+getFavoriteMovies(): void {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  this.movieApiData.getUser(user.Username).subscribe((resp: any) => {
+    console.log("resp", resp);
+      this.favoriteMovies = resp.FavoriteMovies;
+      return resp.user.FavoriteMovies
+    });
+  };
 
 // This is the function that will open the dialog when the director button is clicked  
 openDirectorDialog(directorName, directorBio, directorBirth, directorDeath): void {
@@ -62,9 +73,12 @@ openSynopsisDialog(synopsis): void {
 
 // This is the function that toggles the movie in the user's favorites  
 toggleFav(movie: any): void {
-  console.log("toggleFav", movie)
-  const isFavorite = this.isFav(movie);
-    this.addFavMovies(movie);
+    if (this.isFav(movie._id)){
+      this.deleteFavMovies(movie)
+    }
+    else {
+      this.addFavMovies(movie)
+    }
 };
 
 // This is the function that will add the movie to the user's favorites when the heart button is clicked  
@@ -73,13 +87,33 @@ addFavMovies(movie: any): void {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   if (user) {
     console.log("if statement")
-    this.movieAPIData.addFavoriteMovies(user.Username, movie._id).subscribe((result) => {
+    this.movieApiData.addFavoriteMovies(movie, movie._id, user.Username).subscribe((result) => {
       localStorage.setItem('user', JSON.stringify(result));
-      this.getFavMovies(); // Refresh favorite movies after adding a new one
-      this.snackBar.open(`${movie.movieName} has been added to your favorites`, 'OK', {
+      this.getFavoriteMovies();
+      this.snackBar.open(`${movie.Title} has been added to your favorites`, 'OK', {
         duration: 1000,
       });
     });
   }
-}
+};
+
+// This is the function that will add the movie to the user's favorites when the heart button is clicked  
+deleteFavMovies(movie: any): void {
+  console.log("deleteFavMovies")
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  if (user) {
+    console.log("if statement")
+    this.movieApiData.deleteMovie(movie._id, user.Username).subscribe((result) => {
+      localStorage.setItem('user', JSON.stringify(result));
+      this.getFavoriteMovies();
+      this.snackBar.open(`${movie.Title} has been removed from your favorites`, 'OK', {
+        duration: 1000,
+      });
+    });
+  }
+};
+// This is the function that will indicate via the heart button whether or not a movie is a favorite
+isFav(movieID: any): boolean {
+  return this.favoriteMovies.includes(movieID)
+};
 }

@@ -91,22 +91,11 @@ export class MovieAPIService {
     );
   };
 
-  // Making the api call for the get favorite movies for a user endpoint
-  getFavoriteMovies(movieID: any, userName: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'users/' + userName + '/movies/' + movieID, {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer ' + token,
-      })}).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
-  };
-
   // Making the api call for the add a movie to favorite movies endpoint
-  addFavoriteMovies(movieID: any, userName: any): Observable<any> {
+  addFavoriteMovies(movie: any, movieID: any, userName: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + 'users/' + userName + '/movies/' + movieID, {headers: new HttpHeaders(
+    console.log("token", token)
+    return this.http.post(apiUrl + 'users/' + userName + '/movies/' + movieID, movie, {headers: new HttpHeaders(
       {
         Authorization: 'Bearer ' + token,
       })}).pipe(
