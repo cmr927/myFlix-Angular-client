@@ -1,0 +1,42 @@
+// Color palette
+$primary-color: #6200ea;
+$secondary-color: #03dac6;
+$background-color: #f5f5f5;
+$text-color: #333;
+$button-color: #6200ea;
+$button-hover-color: darken($button-color, 10%);
+$border-radius: 8px;
+
+// Global styles for the registration
+button {
+    
+    background-color: $button-color;
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $button-hover-color;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px lighten($button-color, 30%);
+    }
+  }
+
+// Responsive design
+@media (max-width: 768px) {
+  .welcome-page {
+    h1 {
+      font-size: 2rem;
+    }
+
+    button {
+      width: 80%;
+      margin: 0.5rem 0;
+    }
+  }
+}

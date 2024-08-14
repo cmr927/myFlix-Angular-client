@@ -1,65 +1,63 @@
 <!doctype html>
 
-<div class="main">
+<div class="profile-page">
     <!-- Navbar component -->
     <!-- <app-navbar></app-navbar> -->
 
     <!-- User profile section -->
-    <div class="user-profile">
-        <h1>Your Profile</h1>
+    <h1>{{userData.Username}}'s Profile</h1>
 
-        <!-- User information display section -->
-        <div class="user-container">
+    <!-- User information display section -->
+    <div>
 
-            <!-- User information update form -->
-            <div class="update-user-info">
-                <h2>Update your info</h2>
-                <form class="example-form">
-                    <!-- Input field for user's name -->
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Name</mat-label>
-                        <input matInput [(ngModel)]="userData.Username" type="text" placeholder="Username"
-                            name="Username">
-                    </mat-form-field>
+        <!-- User information update form -->
+        <div>
+            <h2>Update your info</h2>
+            <form>
+                <!-- Input field for user's name -->
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput [(ngModel)]="userData.Username" type="text" placeholder="Username" name="Username">
+                </mat-form-field>
 
-                    <!-- Input field for user's password -->
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Password</mat-label>
-                        <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password"
-                            name="Password">
-                    </mat-form-field>
+                <!-- Input field for user's password -->
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password"
+                        name="Password">
+                </mat-form-field>
 
-                    <!-- Input field for user's email -->
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Email</mat-label>
-                        <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email">
-                    </mat-form-field>
+                <!-- Input field for user's email -->
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email">
+                </mat-form-field>
 
-                    <!-- Input field for user's birthday -->
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Birthday</mat-label>
-                        <input matInput [(ngModel)]="formUserData.Birthday" type="date" placeholder="Birthday"
-                            name="Birthday" />
-                    </mat-form-field>
+                <!-- Input field for user's birthday -->
+                <mat-form-field>
+                    <mat-label>Birthday</mat-label>
+                    <input matInput [(ngModel)]="formUserData.Birthday" type="date" placeholder="Birthday"
+                        name="Birthday" />
+                </mat-form-field>
 
 
 
-                    <!-- Update and Delete User buttons -->
-                    <div class="button-container">
-                        <button mat-raised-button type="submit" color="primary">Update</button>
-                        <!-- <button mat-raised-button color="warn" (click)="deleteUser()"> -->
-                        <!-- Permanently delete your account
+                <!-- Update and Delete User buttons -->
+                <div>
+                    <button mat-raised-button type="submit" color="primary">Update</button>
+                    <!-- <button mat-raised-button color="warn" (click)="deleteUser()"> -->
+                    <!-- Permanently delete your account
                         </button> -->
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-        <!-- Add space between user info and favorite movies -->
-        <div class="spacer"></div>
-        <!-- Favorite movies section -->
-        <div class="content">
-            <app-movie-card isProfile={{true}}></app-movie-card>
+    </div>
+    <!-- Add space between user info and favorite movies -->
+    <div></div>
+    <!-- Favorite movies section -->
+    <div>
+        <h2> Your favorite movies </h2>
+        <app-movie-card isProfile={{true}}></app-movie-card>
 
-        </div>
     </div>
 </div>

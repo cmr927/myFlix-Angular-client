@@ -30,8 +30,8 @@ ngOnInit(): void {
 registerUser(): void {
   console.log("birthday", this.userData.Birthday)
     this.movieApiData.userRegistration(this.userData).subscribe((result) => {
-  // Logic for a successful user registration goes here! 
-     this.dialogRef.close(); // This will close the modal on success!
+  // Logic for a successful user registration goes here
+     this.dialogRef.close(); // This will close the modal on success
      console.log(result);
      this.snackBar.open(JSON.stringify(result), 'OK', {
         duration: 2000
