@@ -1,0 +1,33 @@
+// Define your color palette
+$primary-color: #6200ea;
+$secondary-color: #03dac6;
+$background-color: #f5f5f5;
+$text-color: #333;
+$button-color: #6200ea;
+$button-hover-color: darken($button-color, 10%);
+$border-radius: 8px;
+
+.mat-toolbar{
+    background-color: $primary-color;
+    color: $background-color;
+  }
+  .cursor{
+    cursor: pointer;
+  }
+  .mat-button{
+     color: $background-color;
+     cursor: pointer;
+    transition: $background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($button-color, 10%);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px lighten($button-color, 30%);
+    }
+  }
+  .spacer{
+    flex: 1 1 auto;
+  }

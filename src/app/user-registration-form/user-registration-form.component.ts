@@ -29,15 +29,15 @@ ngOnInit(): void {
 // This is the function responsible for sending the form inputs to the backend
 registerUser(): void {
     this.movieApiData.userRegistration(this.userData).subscribe((result) => {
-  // Logic for a successful user registration goes here! (To be implemented)
-     this.dialogRef.close(); // This will close the modal on success!
+  // Logic for a successful user registration goes here
+     this.dialogRef.close(); // This will close the modal on success
      console.log(result);
-     this.snackBar.open(JSON.stringify(result), 'OK', {
+     this.snackBar.open('Sign up successful!', 'OK', {
         duration: 2000
      });
     }, (result) => {
       console.log(result);
-      this.snackBar.open(JSON.stringify(result), 'OK', {
+      this.snackBar.open('Something went wrong with the sign up', 'OK', {
         duration: 2000
       });
     });

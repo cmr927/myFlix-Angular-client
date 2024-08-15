@@ -9,6 +9,10 @@ import { MovieAPIService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+// This import is used to route
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -21,7 +25,9 @@ export class UserLoginFormComponent implements OnInit {
 constructor(
     public movieApiData: MovieAPIService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    public router: Router
+) { }
 
 ngOnInit(): void {
 }
@@ -29,24 +35,29 @@ ngOnInit(): void {
 // This is the function responsible for sending the form inputs to the backend
 loginUser(): void {
     this.movieApiData.userLogin(this.userData).subscribe((result) => {
-  // Logic for a successful user login goes here! (To be implemented)
+  // Logic for a successful user login goes here!
      this.dialogRef.close(); // This will close the modal on success!
      console.log(result);
-     this.snackBar.open(JSON.stringify(result), 'OK', {
+     this.snackBar.open(`Login successful! Welcome ${result.user.Username}`, 'OK', {
         duration: 2000
      });
     
       if (result) {
         localStorage.setItem("user", JSON.stringify(result.user));
         localStorage.setItem("token", result.token);
-      }
-    
-    }, (result) => {
+        this.router.navigate(['/movies']);
+      };
+  
+    }, 
+    // If login fails 
+    (result) => {
       console.log(result);
-      this.snackBar.open(JSON.stringify(result), 'OK', {
+      this.snackBar.open('Login failed', 'OK', {
         duration: 2000
       });
+      
     });
+   
   }
 
   }

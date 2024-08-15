@@ -1,0 +1,58 @@
+<!doctype html>
+
+<div class="profile-page">
+    <!-- User profile section -->
+    <h1>{{userData.Username}}'s Profile</h1>
+
+    <!-- User information display section -->
+    <div>
+
+        <!-- User information update form -->
+        <div>
+            <h2>Update your info</h2>
+            <form>
+                <!-- Input field for user's name -->
+                <mat-form-field>
+                    <mat-label>Name</mat-label>
+                    <input matInput [(ngModel)]="userData.Username" type="text" placeholder="Username" name="Username">
+                </mat-form-field>
+
+                <!-- Input field for user's password -->
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password"
+                        name="Password">
+                </mat-form-field>
+
+                <!-- Input field for user's email -->
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput [(ngModel)]="userData.Email" type="email" placeholder="Email" name="Email">
+                </mat-form-field>
+
+                <!-- Input field for user's birthday -->
+                <mat-form-field>
+                    <mat-label>Birthday</mat-label>
+                    <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="Birthday"
+                        name="Birthday" />
+                </mat-form-field>
+
+                <!-- Update and Delete User buttons -->
+                <div>
+                    <button mat-raised-button (click)="editUser()">Update</button>
+                    <button mat-raised-button (click)="deleteUser()">
+                        Permanently delete your account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Add space between user info and favorite movies -->
+    <div></div>
+    <!-- Favorite movies section -->
+    <div>
+        <h2> Your favorite movies </h2>
+        <app-movie-card isProfile={{true}}></app-movie-card>
+
+    </div>
+</div>
