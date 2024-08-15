@@ -33,7 +33,6 @@ ngOnInit(): void {
 getMovies(): void {
   this.movieApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
       return this.movies;
     });
   };
@@ -41,7 +40,6 @@ getMovies(): void {
 getFavoriteMovies(): void {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   this.movieApiData.getUser(user.Username).subscribe((resp: any) => {
-    console.log("resp", resp);
       this.favoriteMovies = resp.FavoriteMovies;
       return resp.user.FavoriteMovies
     });
@@ -83,10 +81,8 @@ toggleFav(movie: any): void {
 
 // This is the function that will add the movie to the user's favorites when the heart button is clicked  
 addFavMovies(movie: any): void {
-  console.log("addFavMovies")
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   if (user) {
-    console.log("if statement")
     this.movieApiData.addFavoriteMovies(movie, movie._id, user.Username).subscribe((result) => {
       localStorage.setItem('user', JSON.stringify(result));
       this.getFavoriteMovies();
@@ -99,10 +95,8 @@ addFavMovies(movie: any): void {
 
 // This is the function that will add the movie to the user's favorites when the heart button is clicked  
 deleteFavMovies(movie: any): void {
-  console.log("deleteFavMovies")
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   if (user) {
-    console.log("if statement")
     this.movieApiData.deleteMovie(movie._id, user.Username).subscribe((result) => {
       localStorage.setItem('user', JSON.stringify(result));
       this.getFavoriteMovies();

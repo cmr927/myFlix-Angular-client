@@ -1,0 +1,8 @@
+<!doctype html>
+<mat-toolbar color="primary">
+    <span class="cursor" routerLink="/movies">myFlix</span>
+    <div class="spacer"></div>
+    <a mat-button routerLink="/movies">Home</a>
+    <a mat-button routerLink="/profile">Profile</a>
+    <a mat-button (click)="onLoggedOut()" routerLink="/welcome">{{isLoggedIn()?"Logout":"Login"}}</a>
+</mat-toolbar>

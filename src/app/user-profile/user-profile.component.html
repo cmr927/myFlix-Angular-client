@@ -1,9 +1,6 @@
 <!doctype html>
 
 <div class="profile-page">
-    <!-- Navbar component -->
-    <!-- <app-navbar></app-navbar> -->
-
     <!-- User profile section -->
     <h1>{{userData.Username}}'s Profile</h1>
 
@@ -36,18 +33,16 @@
                 <!-- Input field for user's birthday -->
                 <mat-form-field>
                     <mat-label>Birthday</mat-label>
-                    <input matInput [(ngModel)]="formUserData.Birthday" type="date" placeholder="Birthday"
+                    <input matInput [(ngModel)]="userData.Birthday" type="date" placeholder="Birthday"
                         name="Birthday" />
                 </mat-form-field>
 
-
-
                 <!-- Update and Delete User buttons -->
                 <div>
-                    <button mat-raised-button type="submit" color="primary">Update</button>
-                    <!-- <button mat-raised-button color="warn" (click)="deleteUser()"> -->
-                    <!-- Permanently delete your account
-                        </button> -->
+                    <button mat-raised-button (click)="editUser()">Update</button>
+                    <button mat-raised-button (click)="deleteUser()">
+                        Permanently delete your account
+                    </button>
                 </div>
             </form>
         </div>

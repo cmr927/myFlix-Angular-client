@@ -73,11 +73,9 @@ export class UserProfileComponent implements OnInit {
      */
   public getProfile(): void {
     this.movieAPIData.getUser(this.userData.Username).subscribe((result: any) => {
-      console.log('result:', result);
       this.user = result;
       this.userData.Username = this.user.Username;
       this.userData.Email = this.user.Email;
-      console.log("toISOBirthday", this.user.Birthday)
       if (this.user.Birthday) {
         let Birthday = new Date(this.user.Birthday);
         if (!isNaN(Birthday.getTime())) {
@@ -144,104 +142,37 @@ export class UserProfileComponent implements OnInit {
      * @param movie - The movie to remove from favorites.
      */
 
-  // deleteFavMovies(movie: any): void {
-  //   let user = localStorage.getItem('user');
-  //   if (user) {
-  //     let parsedUser = JSON.parse(user);
-  //     this.userData.UserId = parsedUser._id;
-  //     this.movieAPIData.deleteFavoriteMovie(parsedUser.Username, movie._id).subscribe((result) => {
-  //       localStorage.setItem('user', JSON.stringify(result));
-  //       // Remove the movie ID from the favoritemovie array
-  //       this.favoriteMoviesIDs = this.favoriteMoviesIDs.filter((id) => id !== movie._id);
-  //       // Fetch the user's favorite movies again to update the movie list
-  //       this.getFavMovies();
-  //       // Show a snack bar message
-  //       this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
-  //         duration: 1000,
-  //       });
-  //     });
-  //   }
-  // }
 
   /**
      * Updates user data.
      */
-  // updateUser(): void {
-  //   this.movieAPIData.updateUser(this.formUserData).subscribe((result) => {
-  //     console.log('User update success:', result);
-  //     localStorage.setItem('user', JSON.stringify(result));
-  //     this.snackBar.open('User updated successfully!', 'OK', {
-  //       duration: 2000,
-  //     });
-  //     this.getProfile();
-  //   }, (error) => {
-  //     console.log('Error updating user:', error);
-  //     this.snackBar.open('Failed to update user', 'OK', {
-  //       duration: 2000,
-  //     });
-  //   });
-  // }
+  editUser(): void {
+    this.movieAPIData.editUser(this.userData.Username, this.userData.Password, this.userData.Email, this.userData.Birthday).subscribe((result) => {
+      localStorage.setItem('user', JSON.stringify(result));
+      this.snackBar.open('User updated successfully!', 'OK', {
+        duration: 2000,
+      });
+      this.getProfile();
+    }, (error) => {
+      console.log('Error updating user:', error);
+      this.snackBar.open('Failed to update user', 'OK', {
+        duration: 2000,
+      });
+    });
+  }
 
   /**
      * Deletes the user's account.
      */
-  // async deleteUser(): Promise<void> {
-  //   console.log('deleteUser function called:', this.userData.Email)
-  //   if (confirm('Do you want to delete your account permanently?')) {
-  //     this.movieAPIData.deleteUser().subscribe(() => {
-  //       this.snackBar.open('Account deleted successfully!', 'OK', {
-  //         duration: 3000,
-  //       });
-  //       localStorage.clear();
-  //       this.router.navigate(['welcome']);
-  //     });
-  //   }
-  // }
-  // /**
-  //    * Opens a dialog to view genre information.
-  //    * @param genre - The genre.
-  //    * @param description - The description of the genre.
-  //    */
-  // openGenreDialog(genre: string, description: string): void {
-  //   this.dialog.open(GenreInfoComponent, {
-  //     data: {
-  //       genre: genre,
-  //       description: description
-  //     },
-  //     width: '500px',
-  //   });
-  // }
-
-  // /**
-  //   * Opens a dialog to view director information.
-  //   * @param director - The director's name.
-  //   * @param bio - The director's biography.
-  //   * @param birthdate - The director's birthdate.
-  //   */
-  // openDirectorDialog(director: string, bio: string, birthdate: string): void {
-  //   this.dialog.open(DirectorInfoComponent, {
-  //     data: {
-  //       director: director,
-  //       bio: bio,
-  //       birthdate: birthdate,
-  //     },
-  //     width: '500px',
-  //   });
-  // }
-
-  // /**
-  //  * Opens a dialog to view movie synopsis information.
-  //  * @param movieName - The name of the movie.
-  //  * @param description - The synopsis of the movie.
-  //  */
-  // openSynopsisDialog(movieName: string, description: string): void {
-  //   this.dialog.open(MovieSynopsisComponent, {
-  //     data: {
-  //       movieName: movieName,
-  //       description: description
-  //     },
-  //     width: '500px',
-  //   });
-  // }
-
+  async deleteUser(): Promise<void> {
+    if (confirm('Do you want to delete your account permanently?')) {
+      this.movieAPIData.deleteUser(this.user.Username).subscribe(() => {
+        this.snackBar.open('Account deleted successfully!', 'OK', {
+          duration: 3000,
+        });
+        localStorage.clear();
+        this.router.navigate(['welcome']);
+      });
+    }
+  }
 }
