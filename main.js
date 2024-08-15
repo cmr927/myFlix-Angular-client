@@ -954,7 +954,7 @@ class WelcomePageComponent {
         this.dialog = dialog;
     }
     ngOnInit() {
-        console.log('V1');
+        console.log('V2');
     }
     // This is the function that will open the dialog when the signup button is clicked  
     openUserRegistrationDialog() {
