@@ -149,13 +149,13 @@ export class UserProfileComponent implements OnInit {
   editUser(): void {
     this.movieAPIData.editUser(this.userData.Username, this.userData.Password, this.userData.Email, this.userData.Birthday).subscribe((result) => {
       localStorage.setItem('user', JSON.stringify(result));
-      this.snackBar.open('User updated successfully!', 'OK', {
+      this.snackBar.open('Your infomation was updated successfully!', 'OK', {
         duration: 2000,
       });
       this.getProfile();
     }, (error) => {
       console.log('Error updating user:', error);
-      this.snackBar.open('Failed to update user', 'OK', {
+      this.snackBar.open('Failed to update your infomation', 'OK', {
         duration: 2000,
       });
     });
@@ -167,7 +167,7 @@ export class UserProfileComponent implements OnInit {
   async deleteUser(): Promise<void> {
     if (confirm('Do you want to delete your account permanently?')) {
       this.movieAPIData.deleteUser(this.user.Username).subscribe(() => {
-        this.snackBar.open('Account deleted successfully!', 'OK', {
+        this.snackBar.open('Account deleted successfully', 'OK', {
           duration: 3000,
         });
         localStorage.clear();
