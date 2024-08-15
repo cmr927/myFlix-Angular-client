@@ -846,7 +846,7 @@ const appRoutes = [
     { path: 'welcome', component: _welcome_page_welcome_page_component__WEBPACK_IMPORTED_MODULE_19__["WelcomePageComponent"] },
     { path: 'movies', component: _movie_card_movie_card_component__WEBPACK_IMPORTED_MODULE_18__["MovieCardComponent"] },
     { path: 'profile', component: _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_20__["UserProfileComponent"] },
-    { path: '/', redirectTo: 'welcome', pathMatch: 'prefix' },
+    { path: '', redirectTo: 'welcome' },
 ];
 class AppModule {
 }
