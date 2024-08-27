@@ -70,7 +70,6 @@ class UserProfileComponent {
         this.favoriteMoviesIDs = [];
     }
     /** Lifecycle hook called after component initialization. */ ngOnInit() {
-        console.log(JSON.parse(localStorage.getItem('user')));
         this.userData.Username = JSON.parse(localStorage.getItem('user')).Username;
         this.getProfile();
         this.getMovies(); // Call getMovies() on component initialization
@@ -93,7 +92,7 @@ class UserProfileComponent {
             this.formUserData = Object.assign({}, this.userData);
             this.favoriteMoviesIDs = this.user.favoritemovie;
             this.movieAPIData.getAllMovies().subscribe((movies) => {
-                this.favoritemovie = movies.filter((movie) => this.favoriteMoviesIDs.includes(movie._id));
+                this.favoritemovie = movies.filter((movie) => this.favoriteMoviesIDs && this.favoriteMoviesIDs.includes(movie._id));
             });
         });
     }
@@ -391,7 +390,6 @@ class MovieCardComponent {
         const user = JSON.parse(localStorage.getItem('user') || '{}');
         this.movieApiData.getUser(user.Username).subscribe((resp) => {
             this.favoriteMovies = resp.FavoriteMovies;
-            return resp.user.FavoriteMovies;
         });
     }
     ;
@@ -954,7 +952,6 @@ class WelcomePageComponent {
         this.dialog = dialog;
     }
     ngOnInit() {
-        console.log('V3');
     }
     // This is the function that will open the dialog when the signup button is clicked  
     openUserRegistrationDialog() {
