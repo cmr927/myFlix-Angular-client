@@ -608,7 +608,6 @@ class UserRegistrationFormComponent {
         this.movieApiData.userRegistration(this.userData).subscribe((result) => {
             // Logic for a successful user registration goes here
             this.dialogRef.close(); // This will close the modal on success
-            console.log(result);
             this.snackBar.open('Sign up successful!', 'OK', {
                 duration: 2000
             });
@@ -1163,7 +1162,6 @@ class UserLoginFormComponent {
         this.movieApiData.userLogin(this.userData).subscribe((result) => {
             // Logic for a successful user login goes here!
             this.dialogRef.close(); // This will close the modal on success!
-            console.log(result);
             this.snackBar.open(`Login successful! Welcome ${result.user.Username}`, 'OK', {
                 duration: 2000
             });
