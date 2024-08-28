@@ -41,7 +41,6 @@ getFavoriteMovies(): void {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
   this.movieApiData.getUser(user.Username).subscribe((resp: any) => {
       this.favoriteMovies = resp.FavoriteMovies;
-      return resp.user.FavoriteMovies
     });
   };
 

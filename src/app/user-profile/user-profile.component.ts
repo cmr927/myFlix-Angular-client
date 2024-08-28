@@ -60,7 +60,6 @@ export class UserProfileComponent implements OnInit {
     public router: Router
   ) { }
 /** Lifecycle hook called after component initialization. */  ngOnInit(): void {
-  console.log(JSON.parse(localStorage.getItem('user')))
   this.userData.Username = JSON.parse(localStorage.getItem('user')).Username;
   
     this.getProfile();
@@ -88,7 +87,7 @@ export class UserProfileComponent implements OnInit {
       this.favoriteMoviesIDs = this.user.favoritemovie;
 
       this.movieAPIData.getAllMovies().subscribe((movies: any[]) => {
-        this.favoritemovie = movies.filter((movie: any) => this.favoriteMoviesIDs.includes(movie._id));
+        this.favoritemovie = movies.filter((movie: any) => this.favoriteMoviesIDs && this.favoriteMoviesIDs.includes(movie._id));
       });
     });
   }
