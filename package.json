@@ -7,8 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "typedoc": "typedoc --out docs src/main.ts"
+    "e2e": "ng e2e", 
+    "docs": "typedoc --options ./typedoc.js --exclude '**/*.spec.ts' ./src/ --out docs",
+    "typedoc": "typedoc"
   },
   "private": true,
   "dependencies": {
