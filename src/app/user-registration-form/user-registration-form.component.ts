@@ -16,17 +16,38 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserRegistrationFormComponent implements OnInit {
 
+    /**
+   * An object to capture the user's registration details.
+   * @property {string} Username - The desired username of the new user.
+   * @property {string} Password - The desired password of the new user.
+   * @property {string} Email - The email address of the new user.
+   * @property {string} Birthday - The birthday of the new user.
+   */
+
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  /**
+   * 
+   * @param movieApiData - An instance of MovieAPIService to handle API calls.
+   * @param dialogRef - A reference to the dialog opened for this component.
+   * @param snackBar - An instance of MatSnackBar to display notifications.
+   */
 
 constructor(
     public movieApiData: MovieAPIService,
     public dialogRef: MatDialogRef<UserRegistrationFormComponent>,
     public snackBar: MatSnackBar) { }
 
+ /**
+   * Angular lifecycle hook that runs after component initialization.
+   */    
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+  /**
+   * This method sends the registration form data to the backend and handles the response.
+   * On successful registration, the dialog closes, and a success message is shown.
+   * On failure, an error message is displayed.
+   */
 registerUser(): void {
     this.movieApiData.userRegistration(this.userData).subscribe((result) => {
   // Logic for a successful user registration goes here

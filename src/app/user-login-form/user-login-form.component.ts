@@ -20,7 +20,20 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
 
+/**
+  * An object to capture the user's login credentials.
+  * @property {string} username - The user's username.
+  * @property {string} password - The user's password.
+*/
+
   @Input() userData = { username: '', password: ''};
+
+  /**
+    * @param movieApiData - An instance of MovieAPIService to handle API calls.
+    * @param dialogRef - A reference to the dialog opened for this component.
+    * @param snackBar - An instance of MatSnackBar to display notifications.
+    * @param router - An instance of Router to handle navigation.
+   */
 
 constructor(
     public movieApiData: MovieAPIService,
@@ -29,10 +42,18 @@ constructor(
     public router: Router
 ) { }
 
+/**
+  * Angular lifecycle hook that runs after component initialization.
+*/
+
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+/**
+  * This method sends the login form data to the backend and handles the response.
+  * On successful login, the dialog closes, a success message is shown, and the user is redirected.
+  * On failure, an error message is displayed.
+*/
 loginUser(): void {
     this.movieApiData.userLogin(this.userData).subscribe((result) => {
   // Logic for a successful user login goes here!
@@ -48,7 +69,12 @@ loginUser(): void {
       };
   
     }, 
-    // If login fails 
+
+    /**
+     * If the login fails 
+     * @param result 
+     */
+
     (result) => {
       console.log(result);
       this.snackBar.open('Login failed', 'OK', {
