@@ -7,6 +7,9 @@ interface views. This client-side supports [myFlix API](https://github.com/cmr92
 
 MyFlix provides users with access to information about different movies, directors, and genres. Users are able to sign up, update their personal information, and create a list of their favorite movies.
 
+## Link to Project
+Website: https://cmr927.github.io/myFlix-Angular-client
+
 ## Features
 
 - Displays a welcome view where users will be able to either log in or register an
