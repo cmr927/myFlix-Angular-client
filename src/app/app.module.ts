@@ -25,6 +25,11 @@ import { GenreComponent } from './genre/genre.component';
 import { SynopsisComponent } from './synopsis/synopsis.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+/**
+ * Array of route configurations for the application.
+ * Defines routes and their corresponding components.
+ */
+
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
@@ -33,6 +38,10 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
+    /**
+   * Declarations array that contains the components, directives, and pipes that belong to this module.
+   */
+
   declarations: [
     AppComponent,
     UserRegistrationFormComponent,
@@ -45,6 +54,9 @@ const appRoutes: Routes = [
     SynopsisComponent,
     NavbarComponent
   ],
+    /**
+   * Imports array that brings in other modules that are required by components in this module.
+   */
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -61,7 +73,13 @@ const appRoutes: Routes = [
     MatToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
+    /**
+   * Providers array that specifies the services that are available for dependency injection.
+   */
   providers: [MovieCardComponent],
+    /**
+   * Bootstrap array that defines the root component to bootstrap the Angular application.
+   */
   bootstrap: [AppComponent]
 })
 export class AppModule { }
