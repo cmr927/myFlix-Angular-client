@@ -1,4 +1,4 @@
-# MyFlixAngularClient
+# MyFlix Angular
 
 ## Description
 MyFlix is a single-page, responsive movie app built with [Angular](https://github.com/angular), with routing and several
