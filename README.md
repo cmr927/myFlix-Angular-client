@@ -2,7 +2,7 @@
 
 ## Description
 MyFlix is a single-page, responsive movie app built with [Angular](https://github.com/angular), with routing and several
-interface views. This client-side supports [myFlix API](https://github.com/cmr927/myFlix), the existing server-side code (REST API and database) by facilitating user requests and rendering the response from the server-side via a number of different interface views. 
+interface views. This client-side supports [MyFlix API](https://github.com/cmr927/myFlix), the existing server-side code (REST API and database) by facilitating user requests and rendering the response from the server-side via a number of different interface views. 
 
 MyFlix provides users with access to information about different movies, directors, and genres. Users are able to sign up, update their personal information, and create a list of their favorite movies.
 
@@ -11,8 +11,7 @@ https://cmr927.github.io/myFlix-Angular-client
 
 ## Features
 - Return a list of ALL movies to the user
-- Return data (description, genre, director, image URL, whether it’s featured or not) about a
-single movie by title to the user
+- Return data (description, genre, director, image URL, whether it’s favorited or not) about a single movie by title to the user
 - Return data about a genre (description) by name/title (e.g., “Thriller”)
 - Return data about a director (bio, birth year, death year) by name
 - Allow new users to register
@@ -41,7 +40,7 @@ single movie by title to the user
 - Node.js
 
 ## Server-Side (backend) API
-myFlix interacts with [myFlix API](https://github.com/cmr927/myflix), a custom API that contains all data relevant to the myFlix app, including information about movies, titles, descriptions, genres, directors, images, features, users, and more. Please refer to the API Documentation for information on API endpoints and data formats.
+MyFlix interacts with [MyFlix API](https://github.com/cmr927/myflix), a custom API that contains all data relevant to the MyFlix app, including information about movies, titles, descriptions, genres, directors, images, features, users, and more. Please refer to the API Documentation for information on API endpoints and data formats.
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
